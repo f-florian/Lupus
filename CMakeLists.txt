@@ -4,7 +4,8 @@ cmake_policy(SET CMP0048 NEW)
 
 project(lupus VERSION 0.0)
 
-set(sources gamemaster.cpp main.cpp)
+set(sources gamemaster.cpp main.cpp player.cpp)
+
 set(progname ${PROJECT_NAME})
 
 add_definitions(-DMAJOR=${PROJECT_VERSION_MAJOR} -DMINOR=${PROJECT_VERSION_MINOR} -DAPPNAME="${progname}")

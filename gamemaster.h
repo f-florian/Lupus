@@ -18,7 +18,7 @@
 #ifndef GAMEMASTER_H
 #define GAMEMASTER_H
 
-#include<qt5/QtCore/QObject>
+#include <QtCore/QObject>
 
 class GameMaster : public QObject
 {
