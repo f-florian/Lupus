@@ -1,0 +1,21 @@
+#system files
+*~
+.directory
+
+#logs
+*.log
+
+#cmake
+CMakeCache.txt
+
+#CmakeFiles
+CMakeLists.txt.*
+*.cmake
+*.bin
+*.out
+CMake*.cpp
+CMake*.c
+cmake.*
+
+#qt autosave
+*.autosave
