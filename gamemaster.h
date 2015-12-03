@@ -18,7 +18,8 @@
 #ifndef GAMEMASTER_H
 #define GAMEMASTER_H
 
-#include<qt5/QtCore/QObject>
+#include <qt5/QtCore/QObject>
+#include <list>
 
 class GameMaster : public QObject
 {
@@ -28,7 +29,8 @@ public:
 
 signals:
 
-public slots:
+private:
+    list<Player*> players;
 };
 
 #endif // GAMEMASTER_H
