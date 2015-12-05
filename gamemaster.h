@@ -18,23 +18,29 @@
 #ifndef GAMEMASTER_H
 #define GAMEMASTER_H
 
-<<<<<<< HEAD
 #include <QtCore/QObject>
-=======
-#include <qt5/QtCore/QObject>
 #include <list>
->>>>>>> 30da5328860527a4e1f03f86f83d06528a6e6036
 
 class GameMaster : public QObject
 {
     Q_OBJECT
 public:
     explicit GameMaster(QObject *parent = 0);
+    enum DayTime{
+	day=0,
+	dawn,
+	night,
+	maxdaytime
+    }
 
 signals:
-
+    
 private:
+    void advance();
+    bool setplayer
     list<Player*> players;
+    int day;
+    DayTime currentdaytime;
 };
 
 #endif // GAMEMASTER_H
