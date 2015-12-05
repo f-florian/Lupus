@@ -25,6 +25,10 @@ class Player : public QObject
     Q_OBJECT
 public:
     explicit Player(QObject *parent = 0);
+    enum Character{
+	wolf=0,
+	maxCharacter
+    }
 
 signals:
 

@@ -20,6 +20,7 @@
 
 #include <QtCore/QObject>
 #include <list>
+#include "player.h"
 
 class GameMaster : public QObject
 {
@@ -28,17 +29,18 @@ public:
     explicit GameMaster(QObject *parent = 0);
     enum DayTime{
 	day=0,
-	dawn,
+	sunset,
 	night,
-	maxdaytime
+	dawn,
+	maxDayTime
     }
 
 signals:
     
 private:
     void advance();
-    bool setplayer
-    list<Player*> players;
+    bool addplayer(QString name, Player::Character role);
+    list<Player> players;
     int day;
     DayTime currentdaytime;
 };
