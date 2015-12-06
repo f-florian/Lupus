@@ -25,4 +25,4 @@ get_target_property(QtCore_location Qt5::Core LOCATION)
 
 add_executable(${progname} ${sources})
 
-#target_link_libraries(${progname} Qt5::Core Qt5::Sql Qt5::Widgets )
+target_link_libraries(${progname} Qt5::Core Qt5::Widgets )

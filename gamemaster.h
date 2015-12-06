@@ -22,6 +22,8 @@
 #include <list>
 #include "player.h"
 
+using namespace std;
+
 class GameMaster : public QObject
 {
     Q_OBJECT
@@ -33,16 +35,16 @@ public:
 	night,
 	dawn,
 	maxDayTime
-    }
+    };
 
 signals:
     
 private:
     void advance();
-    bool addplayer(QString name, Player::Character role);
+    bool addplayer(QString name_p, Player::Character role_p);
     list<Player> players;
-    int day;
-    DayTime currentdaytime;
+    int dayNumber;
+    DayTime currentDaytime;
 };
 
 #endif // GAMEMASTER_H

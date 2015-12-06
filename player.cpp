@@ -17,7 +17,7 @@
 
 #include "player.h"
 
-Player::Player(QObject *parent) : QObject(parent)
+Player::Player(QString name_p, Character role_p, QObject *parent):QObject(parent)
 {
 
 }

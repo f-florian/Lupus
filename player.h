@@ -18,21 +18,39 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include <QObject>
+#include <QtCore/QObject>
+#include <list>
+
+using namespace std;
 
 class Player : public QObject
 {
     Q_OBJECT
 public:
-    explicit Player(QObject *parent = 0);
     enum Character{
 	wolf=0,
 	maxCharacter
-    }
+    };
+    
+    enum LifeState{
+	alive=0,
+	dead,
+	dying,
+	poisoned,
+	resurrecting,
+	maxLifeState
+    };
+
+    explicit Player(QString name_p, Character role_p, QObject *parent = 0);
 
 signals:
 
 public slots:
+private:
+    Player* visiting;
+    //maybe useless
+    list<Player*> visited;
+    Character role;
 };
 
 #endif // PLAYER_H
