@@ -30,21 +30,32 @@ class GameMaster : public QObject
 public:
     explicit GameMaster(QObject *parent = 0);
     enum DayTime{
-	day=0,
-	sunset,
-	night,
-	dawn,
-	maxDayTime
+        day=0,
+        sunset,
+        night,
+        dawn,
+        maxDayTime
+    };
+
+    enum Party{
+        /** so we always have party::<name> -1 */
+        none=0,
+        people,
+        wolves,
+        sum,
+        maxParty
     };
 
 signals:
     
 private:
-    void advance();
+    int advance();
     bool addplayer(QString name_p, Player::Character role_p);
+    bool rmplayer(QString name_p);
     list<Player> players;
     int dayNumber;
     DayTime currentDaytime;
+    unsigned short partyNumbers[maxParty];
 };
 
 #endif // GAMEMASTER_H

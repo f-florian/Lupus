@@ -27,29 +27,44 @@ class Player : public QObject
 {
     Q_OBJECT
 public:
+    /**
+     * @brief The Character enum list of roles a Player can have.
+     *
+     * Roles are grouped by Party, each section ending with max<Partyname>
+     */
     enum Character{
-	wolf=0,
-	maxCharacter
+        peasant=0,
+        maxPeople,
+        wolf,
+        maxWolves,
+        maxCharacter
     };
     
     enum LifeState{
-	alive=0,
-	dead,
-	dying,
-	poisoned,
-	resurrecting,
-	maxLifeState
+        alive=0,
+        dead,
+        poisoned,
+        resurrected,
+        phantom,
+        maxLifeState
     };
 
     explicit Player(QString name_p, Character role_p, QObject *parent = 0);
+    void actOn(Player* visitor);
+    void action(Player* first, Player* second=nullptr);
+    void processVisitors();
 
 signals:
 
 public slots:
 private:
+    /** @brief name Player (nick)name */
+    QString name;
+    /** @brief visiting the person whose house this Player is in */
     Player* visiting;
-    //maybe useless
+    /** @brief visited Players visiting this one */
     list<Player*> visited;
+    /** @brief role role in the game */
     Character role;
 };
 

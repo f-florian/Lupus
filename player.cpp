@@ -19,6 +19,7 @@
 
 Player::Player(QString name_p, Character role_p, QObject *parent):QObject(parent)
 {
+    name=name_p;
 
 }
 
