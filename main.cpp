@@ -16,23 +16,17 @@
  *************************************************************************/
 
 #include "gamemaster.h"
+#include "errorhandler.h"
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QMessageBox>
-#include <stdio.h>
-
-#warning unix only; set in config file
-const char* logfile="~/.cdb.log";
-const char* errfile="~/.cdb.err";
 
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc,argv);
 
-
-    //let's log output to files instead of console
-    freopen(logfile,"a",stdout);
-    freopen(errfile,"a",stderr);
+    //init file logging
+    ErrorHandler::init();
 
     //set some application parameters from cmake (see the 'add_definitions' line)
     a.setApplicationName(APPNAME);

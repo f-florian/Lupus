@@ -20,6 +20,30 @@
 Player::Player(QString name_p, Character role_p, QObject *parent):QObject(parent)
 {
     name=name_p;
-
+    role=role_p;
 }
 
+QString Player::getname()
+{
+    return name;
+}
+
+bool Player::action(Player *first, Player *second)
+{
+#warning check nullptr
+    first->actOn(this);
+    second->actOn(this);
+}
+
+Player::LifeState Player::processVisitors()
+{
+#warning write something that makes sense
+    return alive;
+}
+
+
+bool Player::actOn(Player *visitor)
+{
+#warning write something that makes sense
+    return true;
+}

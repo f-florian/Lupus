@@ -27,8 +27,10 @@ using namespace std;
 class GameMaster : public QObject
 {
     Q_OBJECT
+#warning use Q_ENUMS(names)?
 public:
     explicit GameMaster(QObject *parent = 0);
+
     enum DayTime{
         day=0,
         sunset,
@@ -38,7 +40,7 @@ public:
     };
 
     enum Party{
-        /** so we always have party::<name> -1 */
+        /** so we always have <name> -1 */
         none=0,
         people,
         wolves,

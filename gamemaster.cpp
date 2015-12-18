@@ -16,6 +16,7 @@
  *************************************************************************/
 
 #include "gamemaster.h"
+#include "errorhandler.h"
 
 GameMaster::GameMaster(QObject *parent) : QObject(parent)
 {
@@ -24,36 +25,64 @@ GameMaster::GameMaster(QObject *parent) : QObject(parent)
 
 int GameMaster::advance()
 {
-    currentDaytime++;
-    currentDaytime%=maxDayTime;
+    //advance day
+    currentDaytime=static_cast<DayTime>(static_cast<int>(currentDaytime)+1);
+    currentDaytime=static_cast<DayTime>(static_cast<int>(currentDaytime)%static_cast<int>(maxDayTime));
+
+    //process actions according to DayTime
     switch (currentDaytime) {
     case day:
+#warning write
         break;
     case sunset:
+#warning write
         break;
     case night:
-        for (Player* currentplayer:players)
-            currentplayer->action(nullptr,nullptr);
+        //use night powers
+        for (auto &currentplayer:players)
+#warning make them actually act
+            currentplayer.action(nullptr,nullptr);
         break;
     case dawn:
-        for (Player* currentplayer:players)
-            currentplayer->processVisitors();
-        bool peoplewin=true;
-        for(unsigned i=people+1;i<maxParty;i++){
+        //process nightly events
+        for (auto &currentplayer:players)
+            currentplayer.processVisitors();
+
+        //check victory
+        if(partyNumbers[people]==partyNumbers[sum]){
+            printf("peoples' party wins");
+            return people;
+        }
+        //check victory
+        for(auto i=people+1;i<maxParty;i++)
             if(partyNumbers[i]*2>partyNumbers[sum]){
                 printf("%d party wins",i);
                 return i;
             }
-            else if(partyNumbers[i]!=0)
-                peoplewin=false;
-        }
-        if(peoplewin){
-            printf("peoples' party wins");
-            return people;
-        }
         break;
     default:
-        fprintf(stderr,"Error: unknown daytime %d",currentDaytime);
+        ErrorHandler::logError("Error: unknown daytime "+QString(static_cast<int>(currentDaytime)),ErrorHandler::high);
         break;
     }
+    return Party::none;
+}
+
+bool GameMaster::addplayer(QString name_p, Player::Character role_p)
+{
+    for(auto &x:players)
+        if(x.getname()==name_p){
+            return false;
+        }
+    players.emplace_front(name_p,role_p);
+    return true;
+}
+
+bool GameMaster::rmplayer(QString name_p)
+{
+    for(auto &x:players)
+        if(x.getname()==name_p){
+//            players.remove(x);
+            return true;
+        }
+    return false;
 }

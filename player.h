@@ -50,14 +50,19 @@ public:
     };
 
     explicit Player(QString name_p, Character role_p, QObject *parent = 0);
-    void actOn(Player* visitor);
-    void action(Player* first, Player* second=nullptr);
-    void processVisitors();
-
+    QString getname();
+    bool action(Player* first, Player* second=nullptr);
+    Player::LifeState processVisitors();
 signals:
 
 public slots:
 private:
+    /**
+     * @brief actOn act on this Player
+     * @param visitor the acting player
+     */
+    bool actOn(Player* visitor);
+
     /** @brief name Player (nick)name */
     QString name;
     /** @brief visiting the person whose house this Player is in */
