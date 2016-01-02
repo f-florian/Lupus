@@ -44,6 +44,7 @@ public:
         none=0,
         people,
         wolves,
+	vampire,
         sum,
         maxParty
     };
