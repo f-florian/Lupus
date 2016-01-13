@@ -4,7 +4,7 @@ cmake_policy(SET CMP0048 NEW)
 
 project(lupus VERSION 0.0)
 
-set(sources gamemaster.cpp main.cpp player.cpp errorhandler.cpp)
+set(sources gamemaster.cpp main.cpp player.cpp errorhandler.cpp iointerface.cpp)
 
 set(progName ${PROJECT_NAME})
 set(dateTimeFormat "d-M-yyyy hh:mm:ss t")
